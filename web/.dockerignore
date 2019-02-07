@@ -1,5 +1,4 @@
 docker_assignments.iml
 node_modules/
-package-lock.json
-.gitignore
+
 .idea/
