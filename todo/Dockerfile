@@ -12,5 +12,5 @@ FROM openjdk:8-jre
 WORKDIR /todo_app/
 COPY --from=BUILD_IMAGE /todo_app/build/libs/todo_app.jar .
 
-EXPOSE 5000
+EXPOSE 8080
 CMD ["java","-jar","todo_app.jar"]

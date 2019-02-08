@@ -17,8 +17,11 @@
     "url": "https://github.com/ohmCar/docker_assignments/issues"
   },
   "homepage": "https://github.com/ohmCar/docker_assignments#readme",
+  "dependencies": {
+    "nodemon": "^1.18.9",
+    "request": "^2.88.0"
+  },
   "devDependencies": {
-    "express": "^4.16.4",
-    "nodemon": "^1.18.9"
+    "express": "^4.16.4"
   }
 }
