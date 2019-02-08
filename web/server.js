@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/todos', (req, res) => {
-    request.get("http://todoapp:8080/todos", (err, response, data) => {
+    request.get(process.env.TODO_DNS, (err, response, data) => {
         res.send(data);
     });
 });
