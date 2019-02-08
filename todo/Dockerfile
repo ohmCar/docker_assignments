@@ -11,5 +11,6 @@ RUN ./gradlew build
 FROM openjdk:8-jre
 WORKDIR /todo_app/
 COPY --from=BUILD_IMAGE /todo_app/build/libs/todo_app.jar .
-EXPOSE 8080
+
+EXPOSE 5000
 CMD ["java","-jar","todo_app.jar"]
