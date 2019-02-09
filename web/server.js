@@ -11,8 +11,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/todos', (req, res) => {
+    const createTodoHtml = ` <h3>Create Todo:</h3><form method="POST">Title:<input type="text" name="title" required>
+<br>Description: :<input type="text" name="description" required> <br><input type="submit"></form>`;
     request.get(process.env.TODO_DNS, (err, response, data) => {
-        res.send(data);
+        let todos = `<h3>My Todos:</h3>${data}`;
+        res.send(`${createTodoHtml}${todos}`);
     });
 });
 
