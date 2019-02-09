@@ -19,4 +19,10 @@ app.get('/todos', (req, res) => {
     });
 });
 
+app.post('/todos', (req, res) => {
+    request.post({uri: process.env.TODO_DNS, json: req.body}, (error, response, data) => {
+        res.send(`<h3>Stored the following todo:</h3> ${data}`);
+    });
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));

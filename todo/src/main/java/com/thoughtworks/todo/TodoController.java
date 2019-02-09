@@ -1,7 +1,8 @@
 package com.thoughtworks.todo;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @RestController
 public class TodoController {
-    @RequestMapping(value = "/todos", method = RequestMethod.GET)
+    @GetMapping("/todos")
     public String getTodos() throws IOException {
         return getTodoContent();
     }
@@ -21,5 +22,10 @@ public class TodoController {
         String filePath = pwd + "/todos.json";
         List<String> content = Files.readAllLines(Paths.get(filePath));
         return String.join(" ", content);
+    }
+
+    @PostMapping("/todos")
+    public String saveTodo(@RequestBody Object todo) {
+        return todo.toString();
     }
 }

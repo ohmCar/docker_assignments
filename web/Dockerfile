@@ -2,7 +2,7 @@
 FROM node:10
 
 #Specifying work directory
-WORKDIR /usr/src/helloworldapp
+WORKDIR /usr/src/webapp
 
 #COPY dependency configuration file
 COPY package*.json ./
