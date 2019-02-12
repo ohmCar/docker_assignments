@@ -1,14 +1,14 @@
 package com.thoughtworks.todo;
 
+import org.json.JSONArray;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
 
 @RestController
 public class TodoController {
@@ -17,15 +17,22 @@ public class TodoController {
         return getTodoContent();
     }
 
-    private String getTodoContent() throws IOException {
-        String pwd = System.getProperty("user.dir");
-        String filePath = pwd + "/todos.json";
-        List<String> content = Files.readAllLines(Paths.get(filePath));
-        return String.join(" ", content);
+    @PostMapping("/todos")
+    public String saveTodo(@RequestBody Object todo) throws IOException {
+        JSONArray todoContent = new JSONArray(getTodoContent());
+        todoContent.put(todo);
+        Files.write(getTodosFilePath(), Collections.singleton(todoContent.toString()));
+        return todo.toString();
     }
 
-    @PostMapping("/todos")
-    public String saveTodo(@RequestBody Object todo) {
-        return todo.toString();
+    private Path getTodosFilePath() {
+        String pwd = System.getProperty("user.dir");
+        String filePath = pwd + "/todos.json";
+        return Paths.get(filePath);
+    }
+
+    private String getTodoContent() throws IOException {
+        List<String> content = Files.readAllLines(getTodosFilePath());
+        return String.join(" ", content);
     }
 }
