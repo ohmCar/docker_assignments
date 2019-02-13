@@ -10,3 +10,5 @@ services:
 
   todoapp:
     build: ./todo
+    volumes:
+      - ./todo/src/main/resources/todos.json:/todo_app/todos.json
