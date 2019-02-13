@@ -5,6 +5,8 @@ services:
     build: ./web
     ports:
       - "3000:3000"
+    volumes:
+      - "./web/:/usr/src/webapp"
     environment:
       - TODO_DNS=http://todoapp:8080/todos
 
